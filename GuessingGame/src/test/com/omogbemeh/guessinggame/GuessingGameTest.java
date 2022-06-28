@@ -6,6 +6,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GuessingGameTest {
 
@@ -60,9 +61,41 @@ public class GuessingGameTest {
 
     @Test
     public void testMoreThan3WrongGuesses() {
-        int guessLimit = game.getGuessLimit();
-        int guessCount = 0;
         String message = generateAnAmountOfWrongGuesses(4);
         assertEquals("You are out of guesses", message);
     }
+
+    @Test
+    @Disabled
+    public void testLessThan3WrongGuesses() {
+        int answer = game.getAnswer();
+        String message = generateAnAmountOfWrongGuesses(2);
+        assertEquals("You Lost!", message);
+    }
+
+    @Test
+    public void test2WrongAnd1RightGuesses() {
+        String message = generateAnAmountOfWrongGuesses(2);
+        int answer = game.getAnswer();
+        message = game.guess(answer);
+        assertEquals("You got it in 3 tries", message);
+    }
+
+    @Test
+    public void test1WrongAnd1RightGuesses2() {
+        String message = generateAnAmountOfWrongGuesses(1);
+        int guess = game.getAnswer();
+        message = game.guess(guess);
+        assertEquals("You got it in 2 tries", message);
+    }
+
+    @Test
+    public void testTooHighOrLowMessage() {
+        int answer = game.getAnswer();
+        int guess = answer >= 10 ? answer - 1 : answer + 1;
+        String message = game.guess(guess);
+        if (guess > answer) assertEquals("Too high, guess lower", message);
+        else assertEquals("Too Low, guess higher", message);
+    }
+
 }
