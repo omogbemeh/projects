@@ -1,6 +1,8 @@
 package com.omogbemeh.blackjack.enums;
 
-public enum RankEnum {
+import java.util.Random;
+
+public enum Rank {
     ACE(1),
     TWO(2),
     THREE(3),
@@ -15,10 +17,16 @@ public enum RankEnum {
     QUEEN(10),
     JACK(10);
 
+    private static final Random RAND = new Random();
     public int value;
-    final static public int LENGTH = 13;
-    RankEnum(int val) {
+    final static public int LENGTH = values().length;
+    Rank(int val) {
         this.value = val;
+    }
+
+    public static Rank getRandomEnum() {
+        int randNum = RAND.nextInt(values().length);
+        return values()[randNum];
     }
 
     int getLength() {

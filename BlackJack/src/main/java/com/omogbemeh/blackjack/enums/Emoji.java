@@ -3,7 +3,8 @@ package com.omogbemeh.blackjack.enums;
 public enum Emoji {
     DICE_EMOJI("\uD83C\uDFB2"),
     CASINO_EMOJI("\uD83C\uDFB0"),
-    CRYSTAL_BALL_EMOJI("\uD83D\uDD2E");
+    CRYSTAL_BALL_EMOJI("\uD83D\uDD2E"),
+    WAVE("\uD83D\uDC4B");
 
     private String emoji;
     Emoji(String emojiUnicode) {
