@@ -35,23 +35,13 @@ public class BlackJack {
                 continue;
             } else if ("s".equals(inp)) {
                 calculateHand();
+                return;
             } else {
                 System.out.printf("%s Please enter a valid input%n", dice);
                 printInstructions();
             }
         }
 
-    }
-
-    private void calculateHand() {
-        if (player.getHand() == 21) {
-            System.out.println("You won!");
-        } else if (player.getHand() > 21) {
-            System.out.println("Bust, Game over!");
-        } else if (house.getHand() < 17) {
-            house.drawCard();
-        }
-        return;
     }
 
     public void setPlayerName() {
@@ -61,7 +51,7 @@ public class BlackJack {
         String userInput = sc.nextLine().strip();
         player = new Player(userInput);
         playerName = player.getName();
-        System.out.printf("%s Hello %s %s %s, these are the rules:%n", dice, crystalBallEmoji, player.getName(), crystalBallEmoji);
+        System.out.printf("%s Hello %s %s, these are the rules:%n", dice, player.getName(), crystalBallEmoji);
     }
 
     public void printInstructions() {
@@ -70,7 +60,7 @@ public class BlackJack {
     }
 
     public String getCard() {
-        System.out.printf("%s Enter an input: ", dice);
+        System.out.printf("%s Enter \"h\" to get card, and \"s\" to stand: ", dice);
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine().strip();
         return userInput;
@@ -82,6 +72,32 @@ public class BlackJack {
         System.out.printf("%s ============================== %s%n", dice, dice);
         String userInput = getCard();
         return userInput;
+    }
+
+    private void calculateHand() {
+        house.setPlayerHasStood(true);
+        if (player.getHand() > 21) {
+            System.out.printf("%s Bust! Game over 😢😢%n", Emoji.CRYSTAL_BALL_EMOJI);
+            return;
+        }
+
+        if (house.getHand() < 17) {
+            System.out.printf("%s House currently has a hand less than 17%n", Emoji.CASINO_EMOJI);
+            System.out.printf("%s House is going to keep drawing cards, till it equal or greater than 17%n", Emoji.CASINO_EMOJI);
+            System.out.printf("%s ========================================= %s%n", Emoji.CASINO_EMOJI,Emoji.CASINO_EMOJI);
+        }
+
+        while (house.getHand() < 17) house.drawCard();
+
+        if (house.getHand() > 21) {
+            System.out.printf("%s You won 🎉🎉 !!", Emoji.CRYSTAL_BALL_EMOJI);
+            return;
+        }
+
+        System.out.printf("You have a hand of %d%n", player.getHand());
+        System.out.printf("House has a hand of %d%n", house.getHand());
+        String message = house.getHand() > player.getHand() ? "The house won!" : "You won";
+        System.out.println(message);
     }
 
 }

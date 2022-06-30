@@ -8,7 +8,7 @@ public class Player {
     protected int hand;
     protected int numberOfAceInHand = 0;
 
-    private boolean hasStood = false;
+    public boolean hasStood = false;
     public boolean hasAceInHand = false;
 
     public Player(String name) {
@@ -49,6 +49,6 @@ public class Player {
     }
 
     public void printHandInfo(Card card) {
-        System.out.printf("%s %s draws a %s :: Hand: %d%n", Emoji.CRYSTAL_BALL_EMOJI, name, card.toString(), hand);
+        System.out.printf("%s %s draws %s :: Hand: %d%n", Emoji.CRYSTAL_BALL_EMOJI, name, card.toString(), hand);
     }
 }
