@@ -7,6 +7,7 @@ public enum Emoji {
     WAVE("\uD83D\uDC4B");
 
     private String emoji;
+
     Emoji(String emojiUnicode) {
         this.emoji = emojiUnicode;
     }

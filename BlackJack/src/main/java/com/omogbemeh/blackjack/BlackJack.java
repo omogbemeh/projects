@@ -30,11 +30,11 @@ public class BlackJack {
 
         while (true) {
             String inp = gameBegins();
-//            Scanner sc = new Scanner(System.in);
-//            String userInput = sc.nextLine();
             if ("h".equals(inp)) {
                 gameBegins();
                 continue;
+            } else if ("s".equals(inp)) {
+                calculateHand();
             } else {
                 System.out.printf("%s Please enter a valid input%n", dice);
                 printInstructions();
@@ -42,6 +42,18 @@ public class BlackJack {
         }
 
     }
+
+    private void calculateHand() {
+        if (player.getHand() == 21) {
+            System.out.println("You won!");
+        } else if (player.getHand() > 21) {
+            System.out.println("Bust, Game over!");
+        } else if (house.getHand() < 17) {
+            house.drawCard();
+        }
+        return;
+    }
+
     public void setPlayerName() {
         System.out.printf("%s Hello %s, Welcome to the Praise's BlackJack's casino %s %s !%n", dice, waveEmoji, casinoEmoji, casinoEmoji);
         System.out.printf("%s Enter your name to begin: ", dice);
@@ -65,7 +77,6 @@ public class BlackJack {
     }
 
     public String gameBegins() {
-//        System.out.printf("%s ============================== %s%n", dice, dice);
         player.drawCard();
         house.drawCard();
         System.out.printf("%s ============================== %s%n", dice, dice);

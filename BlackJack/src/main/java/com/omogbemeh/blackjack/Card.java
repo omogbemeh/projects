@@ -27,6 +27,14 @@ public class Card {
         return this.rank.value;
     }
 
+    public String getSuit() {
+        return this.suit.toString();
+    }
+
+    public int isAce() {
+        return this.rank.value = 10;
+    }
+
     @Override
     public String toString() {
         String str = String.format("%s %s", rank.value == 1 ? "Ace" : rank.value, suit.value);
