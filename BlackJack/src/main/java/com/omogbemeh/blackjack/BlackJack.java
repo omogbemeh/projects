@@ -26,13 +26,15 @@ public class BlackJack {
     public void start() {
         setPlayerName();
         printInstructions();
-        alertDrawCardMessage();
+        getCard();
 
         while (true) {
-            Scanner sc = new Scanner(System.in);
-            String userInput = sc.nextLine();
-            if ("h".equals(userInput)) {
+            String inp = gameBegins();
+//            Scanner sc = new Scanner(System.in);
+//            String userInput = sc.nextLine();
+            if ("h".equals(inp)) {
                 gameBegins();
+                continue;
             } else {
                 System.out.printf("%s Please enter a valid input%n", dice);
                 printInstructions();
@@ -40,7 +42,6 @@ public class BlackJack {
         }
 
     }
-
     public void setPlayerName() {
         System.out.printf("%s Hello %s, Welcome to the Praise's BlackJack's casino %s %s !%n", dice, waveEmoji, casinoEmoji, casinoEmoji);
         System.out.printf("%s Enter your name to begin: ", dice);
@@ -48,11 +49,7 @@ public class BlackJack {
         String userInput = sc.nextLine().strip();
         player = new Player(userInput);
         playerName = player.getName();
-        System.out.printf("%s Hello %s %s %s, these are the keys you need to play:%n", dice, crystalBallEmoji, player.getName(), crystalBallEmoji);
-    }
-
-    public String getPlayerName() {
-        return playerName;
+        System.out.printf("%s Hello %s %s %s, these are the rules:%n", dice, crystalBallEmoji, player.getName(), crystalBallEmoji);
     }
 
     public void printInstructions() {
@@ -60,15 +57,20 @@ public class BlackJack {
         System.out.printf("%s >> \"s\" to stand%n", dice);
     }
 
-    public void alertDrawCardMessage() {
-        System.out.printf("%s Enter \"h\" to draw card...", dice);
+    public String getCard() {
+        System.out.printf("%s Enter an input: ", dice);
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.nextLine().strip();
+        return userInput;
     }
 
-    public void gameBegins() {
+    public String gameBegins() {
+//        System.out.printf("%s ============================== %s%n", dice, dice);
         player.drawCard();
         house.drawCard();
-        System.out.printf("%s Enter \"h\" to draw card...", dice);
-        printInstructions();
+        System.out.printf("%s ============================== %s%n", dice, dice);
+        String userInput = getCard();
+        return userInput;
     }
 
 }

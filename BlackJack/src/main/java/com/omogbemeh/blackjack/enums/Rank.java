@@ -17,9 +17,12 @@ public enum Rank {
     QUEEN(10),
     JACK(10);
 
-    private static final Random RAND = new Random();
-    public int value;
+    final static private Random RAND = new Random();
+
     final static public int LENGTH = values().length;
+
+    public int value;
+
     Rank(int val) {
         this.value = val;
     }
@@ -32,6 +35,4 @@ public enum Rank {
     int getLength() {
         return this.LENGTH;
     }
-
-
 }

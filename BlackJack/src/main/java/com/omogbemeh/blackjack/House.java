@@ -23,6 +23,8 @@ public class House extends Player {
         if (drawCount == 0) {
             System.out.printf("%s %s draws a %s%n", Emoji.CASINO_EMOJI, name, card.toString());
             drawCount++;
+        } else {
+            System.out.printf("%s %s draws another card %n", Emoji.CASINO_EMOJI, name);
         }
     }
 }

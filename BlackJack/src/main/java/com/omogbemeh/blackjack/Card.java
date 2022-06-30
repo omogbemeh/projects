@@ -29,8 +29,7 @@ public class Card {
 
     @Override
     public String toString() {
-        if (rank.value == 1) {}
-        String str = String.format("%s %s", rank.value, suit.value);
+        String str = String.format("%s %s", rank.value == 1 ? "Ace" : rank.value, suit.value);
         return str;
     }
 }
