@@ -16,6 +16,10 @@ public class Piece {
         this.location = location;
     }
 
+    public String move() {
+        return null;
+    }
+
     @Override
     public String toString() {
         return this.name;

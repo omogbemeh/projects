@@ -17,6 +17,7 @@ public class ChessBoard {
         ChessBoard chessBoard = new ChessBoard();
         Pawn pawn = new Pawn();
         chessBoard.addPieceToBoard(pawn, "a5");
+        chessBoard.movePiece(pawn);
     }
 
     public static String parseLocation(String str) {
@@ -33,12 +34,13 @@ public class ChessBoard {
     public Piece getPieceAtLocation(String str) {
         String location = ChessBoard.parseLocation(str);
         if ("-1".equals(location)) return null;
-        int xCoordinate = getPieceIntCoordinates(location)[0];
-        int yCoordinate = getPieceIntCoordinates(location)[1];
+        int[] coordinates = getPieceIntCoordinates(location);
+        int xCoordinate = coordinates[0];
+        int yCoordinate = coordinates[1];
         return this.chessBoard[xCoordinate][yCoordinate];
     }
 
-    private int[] getPieceIntCoordinates(String location) {
+    public static int[] getPieceIntCoordinates(String location) {
         int xCoordinate = Integer.parseInt(location.split(",")[0]);
         int yCoordinate = Integer.parseInt(location.split(",")[1]);
         return new int[] {xCoordinate, yCoordinate};
@@ -48,10 +50,21 @@ public class ChessBoard {
         String parsedLocation = ChessBoard.parseLocation(location);
         Piece pieceAtLocation = getPieceAtLocation(location);
         if (pieceAtLocation != null || "-1".equals(parsedLocation)) return;
-        int xCoordinate = getPieceIntCoordinates(parsedLocation)[0];
-        int yCoordinate = getPieceIntCoordinates(parsedLocation)[1];
+        int[] coordinates = getPieceIntCoordinates(parsedLocation);
+        int xCoordinate = coordinates[0];
+        int yCoordinate = coordinates[1];
         this.chessBoard[xCoordinate][yCoordinate] = piece;
         piece.setLocation(parsedLocation);
+    }
+
+    public void movePiece(Piece piece) {
+        String oldLocation = piece.getLocation();
+        String newLocation = piece.move();
+        int[] coordinates = getPieceIntCoordinates(oldLocation);
+        int xOldCoordinate = coordinates[0];
+        int yOldCoordinate = coordinates[1];
+        this.chessBoard[xOldCoordinate][yOldCoordinate] = null;
+        piece.setLocation(newLocation);
     }
 
 }

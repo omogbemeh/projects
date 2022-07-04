@@ -3,6 +3,7 @@ package com.omogbemeh.chess;
 import com.omogbemeh.chess.pieces.Knight;
 import com.omogbemeh.chess.pieces.Pawn;
 import com.omogbemeh.chess.pieces.Piece;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +11,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ChessBoardTest {
-    private final ChessBoard chessBoard = new ChessBoard();
+    private ChessBoard chessBoard;
+
+    @BeforeEach
+    void setUp() {
+        this.chessBoard = new ChessBoard();
+    }
 
     @Test
     public void testParseCorrectLocation() {
-        String location = ChessBoard.parseLocation("h1");
-        assertEquals("7,7", location);
+        String location = ChessBoard.parseLocation("a2");
+        assertEquals("0,6", location);
     }
 
     @Test
@@ -42,5 +48,15 @@ public class ChessBoardTest {
     public void testGetPieceAtLocation() {
         Piece piece = chessBoard.getPieceAtLocation("a8");
         assertNull(piece);
+    }
+
+    @Test
+    public void testPawnOldLocationIsNull() {
+        Pawn pawn = new Pawn(); // Creates a new pawn
+        chessBoard.addPieceToBoard(pawn, "a2"); // Adds the pawn to the location "a2"
+        String pawnOldLocation = pawn.getLocation(); // Gets old location as a String Coordinate "0,6"
+        int[] oldCoordinates = ChessBoard.getPieceIntCoordinates(pawnOldLocation); // Turns the old location into an Integer Array [0,6]
+        chessBoard.movePiece(pawn); // moves the piece and sets the pawn's old location to null
+        assertNull(chessBoard.chessBoard[oldCoordinates[0]][oldCoordinates[1]]);
     }
 }
