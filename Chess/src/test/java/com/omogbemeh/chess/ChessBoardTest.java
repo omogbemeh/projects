@@ -59,4 +59,13 @@ public class ChessBoardTest {
         chessBoard.movePiece(pawn); // moves the piece and sets the pawn's old location to null
         assertNull(chessBoard.chessBoard[oldCoordinates[0]][oldCoordinates[1]]);
     }
+
+    @Test
+    public void testPawnMovedOneStepForward() {
+        Pawn pawn = new Pawn();
+        chessBoard.addPieceToBoard(pawn, "a2"); // add the pawn to the square "a2"
+        chessBoard.movePiece(pawn); // move pawn one step forward and update the Pawn's location
+
+
+    }
 }

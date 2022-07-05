@@ -61,10 +61,21 @@ public class ChessBoard {
         String oldLocation = piece.getLocation();
         String newLocation = piece.move();
         int[] coordinates = getPieceIntCoordinates(oldLocation);
+        if (coordinates[0] > 7 || coordinates[1] > 7) return;
         int xOldCoordinate = coordinates[0];
         int yOldCoordinate = coordinates[1];
         this.chessBoard[xOldCoordinate][yOldCoordinate] = null;
         piece.setLocation(newLocation);
     }
 
+    public void movePawn2Steps(Pawn pawn) {
+        String oldLocation = pawn.getLocation();
+        String newLocation = pawn.moveTwoStepsForward();
+        int[] coordinates = getPieceIntCoordinates(oldLocation);
+        if (coordinates[0] > 7 || coordinates[1] > 7) return;
+        int xOldCoordinate = coordinates[0];
+        int yOldCoordinate = coordinates[1];
+        this.chessBoard[xOldCoordinate][yOldCoordinate] = null;
+        pawn.setLocation(newLocation);
+    }
 }

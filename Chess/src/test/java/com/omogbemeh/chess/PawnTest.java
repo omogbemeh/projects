@@ -31,17 +31,6 @@ public class PawnTest {
     public void testMovePawn() {
         this.chessBoard.addPieceToBoard(this.pawn, "a4");
         String newLocation = this.pawn.move();
-        assertEquals("0,5", newLocation);
-    }
-
-    @Test
-    @Disabled
-    public void testMoveOneStepForward() {
-        chessBoard.addPieceToBoard(pawn, "a2");
-        this.pawn.move();
-        Piece movedPawn = chessBoard.getPieceAtLocation("a3");
-        Piece pawnOldLocation = chessBoard.getPieceAtLocation("a2");
-        assertEquals(this.pawn.toString(), movedPawn.toString(), "Pawn moved forward by one step");
-        assertNull(pawnOldLocation);
+        assertEquals("0,3", newLocation);
     }
 }
