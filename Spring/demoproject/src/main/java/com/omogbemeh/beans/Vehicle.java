@@ -1,11 +1,17 @@
 package com.omogbemeh.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
 
 @Component
 public class Vehicle {
+    private String make = "";
+
+    private VehicleServices vehicleServices;
+
+    @Autowired
     public Vehicle() {
         System.out.println("Vehicle has been created");
     }
@@ -14,18 +20,17 @@ public class Vehicle {
         this.make = make;
     }
 
-    private String make = "";
-
     public String getMake() {
         return make;
     }
 
-    public void sayHello() {
-        System.out.println("Bet you didnt know cars could talk.");
+    @Autowired
+    public void setVehicleServices(VehicleServices vehicleServices) {
+        this.vehicleServices = vehicleServices;
     }
 
-    public void check() {
-        System.out.println("I'm still here though 👀");
+    public VehicleServices getVehicleServices() {
+        return vehicleServices;
     }
 
     @Override
