@@ -31,6 +31,6 @@ public class PawnTest {
     public void testMovePawn() {
         this.chessBoard.addPieceToBoard(this.pawn, "a4");
         String newLocation = this.pawn.move();
-        assertEquals("0,3", newLocation);
+        assertEquals("0,5", newLocation);
     }
 }
