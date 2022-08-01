@@ -1,9 +1,10 @@
-package com.omogbemeh.beans;
+package com.omogbemeh.services;
 
 import com.omogbemeh.beans.speakers.Speaker;
 import com.omogbemeh.beans.tyres.Tyre;
 import com.omogbemeh.factory.SpeakerFactory;
 import com.omogbemeh.factory.TyreFactory;
+import com.omogbemeh.interfaces.SpeakerInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

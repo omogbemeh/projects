@@ -6,13 +6,11 @@ import com.omogbemeh.beans.speakers.BoseSpeaker;
 import com.omogbemeh.beans.speakers.Speaker;
 import com.omogbemeh.beans.tyres.BridgeStoneTyre;
 import com.omogbemeh.beans.tyres.Tyre;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 
 @Configuration
-@ComponentScan(basePackages = "com.omogbemeh.beans")
+@ComponentScan(basePackages = {"com.omogbemeh.beans", "com.omogbemeh.services", "com.omogbemeh.aspects"})
+@EnableAspectJAutoProxy
 public class ProjectConfig {
 
     @Bean("boseSpeaker")

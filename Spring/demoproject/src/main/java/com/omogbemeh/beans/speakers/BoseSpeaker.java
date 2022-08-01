@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BoseSpeaker extends Speaker implements SpeakerInterface {
+//    private boolean vehicleStarted = false;
     public BoseSpeaker() {
         super("Bose");
     }

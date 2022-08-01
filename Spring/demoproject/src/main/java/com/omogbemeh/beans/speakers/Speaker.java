@@ -1,5 +1,7 @@
 package com.omogbemeh.beans.speakers;
 
+import com.omogbemeh.interfaces.SpeakerInterface;
+
 public class Speaker {
     private String name;
 

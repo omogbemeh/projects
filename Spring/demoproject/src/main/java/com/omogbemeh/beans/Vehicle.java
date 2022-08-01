@@ -1,5 +1,6 @@
 package com.omogbemeh.beans;
 
+import com.omogbemeh.services.VehicleServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

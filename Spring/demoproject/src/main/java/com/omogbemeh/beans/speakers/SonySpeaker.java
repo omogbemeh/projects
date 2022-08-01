@@ -9,7 +9,8 @@ public class SonySpeaker extends Speaker implements SpeakerInterface {
         super("Sony");
     }
 
-    public void makeSound() {
+    public void makeSound(boolean vehicleStarted) {
         System.out.println("The sony speakers are playing some hip hop classics.");
     }
+
 }
