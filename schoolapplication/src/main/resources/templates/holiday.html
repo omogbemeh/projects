@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <div th:replace="header :: header"></div>
+    <h3>List of upcoming holidays.</h3>
+
+    <form method="post" th:action="@{/filterHoliday}">
+            <h2>Filter holidays.</h2>
+            <input type="radio" name="holiday" id="festival" value="festHoliday">
+            <label for="festival">Festive Holidays</label>
+
+            <input type="radio" name="holiday" id="federal" value="fedHoliday">
+            <label for="federal">Federal holidays</label>
+
+            <button type="submit">Submit</button>
+    </form>
+
+    <ul>
+        <h2>Federal holiday</h2>
+        <div th:each="holiday : ${fedHolidays}">
+            <li th:text="'day: ' + ${holiday.day} + ', reason: ' + ${holiday.reason}"></li>
+        </div>
+
+        <h2>Festival holiday</h2>
+        <div th:each="holiday : ${festHolidays}">
+            <li th:text="'day: ' + ${holiday.day} + ', reason: ' + ${holiday.reason}"></li>
+        </div>
+
+    </ul>
+
+    <div th:replace="footer :: footer"></div>
+</body>
+</html>

@@ -5,7 +5,12 @@
 </head>
 <body>
     <header>
-        <h1>I am the header baby!!</h1>
+        <a th:href="@{/home}">Logo</a>
+        <ul>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/courses}">Courses</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
     </header>
 </body>
 </html>
