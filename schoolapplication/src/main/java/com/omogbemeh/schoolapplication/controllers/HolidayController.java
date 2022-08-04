@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,6 +20,9 @@ public class HolidayController {
     public final HolidayService hs;
 
     private final Logger log = LoggerFactory.getLogger(HolidayService.class);
+    private List<Holiday> holidays;
+    private List<Holiday> fedHolidays;
+    private List<Holiday> festHolidays;
 
     @Autowired
     public HolidayController() {
@@ -26,26 +30,46 @@ public class HolidayController {
     }
 
     @GetMapping("/holidays")
-    public String displayHolidays(Model model) {
-        List<Holiday> holidays = hs.getHolidays();
-        List<Holiday> fedHolidays = holidays
+    public String displayHolidays(@RequestParam(required = false) String holiday,
+                                  Model model) {
+        holidays = hs.getHolidays();
+        fedHolidays = holidays
                                             .stream()
                                             .filter(h -> h.getType().toString().equals(Holiday.Type.FEDERAL.toString()))
                                             .collect(Collectors.toList());
 
-        List<Holiday> festHolidays = holidays
+        festHolidays = holidays
                                             .stream()
                                             .filter(h -> h.getType().toString().equals(Holiday.Type.FESTIVAL.toString()))
                                             .collect(Collectors.toList());
 
+        model.addAttribute("madeSelection", false);
         model.addAttribute("fedHolidays", fedHolidays);
         model.addAttribute("festHolidays", festHolidays);
 
+        if (holiday != null) {
+            if (holiday.equals("fedHoliday")) {
+                model.addAttribute("madeSelection", true);
+                model.addAttribute("displayFedHolidays", true);
+            } else if (holiday.equals("festHoliday")) {
+                model.addAttribute("madeSelection", true);
+                model.addAttribute("displayFestHolidays", true);
+            }
+        }
+
         return "holiday.html";
     }
 
-    @GetMapping("/filterHoliday")
-    public String filterHoliday() {
-        return "holiday.html";
-    }
+//    @GetMapping("/filterHoliday")
+//    public String filterHoliday(@RequestParam String holiday, Model model) {
+//        if (holiday.equals("fedHoliday")) {
+//            model.addAttribute("fedHolidays", fedHolidays);
+//            return "holiday.html";
+//        } else if (holiday.equals("festHoliday")) {
+//            model.addAttribute("festHolidays", festHolidays);
+//            return "holiday.html";
+//        }
+//        log.info(holiday);
+//        return "holiday.html";
+//    }
 }
