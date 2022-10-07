@@ -16,6 +16,7 @@ public class ChessBoard {
     public static void main(String[] args) {
         ChessBoard chessBoard = new ChessBoard();
         Pawn pawn = new Pawn();
+        pawn.getLocation();
         chessBoard.addPieceToBoard(pawn, "a5");
         chessBoard.movePiece(pawn);
     }

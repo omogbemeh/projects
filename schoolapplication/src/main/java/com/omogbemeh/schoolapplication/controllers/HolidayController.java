@@ -60,16 +60,4 @@ public class HolidayController {
         return "holiday.html";
     }
 
-//    @GetMapping("/filterHoliday")
-//    public String filterHoliday(@RequestParam String holiday, Model model) {
-//        if (holiday.equals("fedHoliday")) {
-//            model.addAttribute("fedHolidays", fedHolidays);
-//            return "holiday.html";
-//        } else if (holiday.equals("festHoliday")) {
-//            model.addAttribute("festHolidays", festHolidays);
-//            return "holiday.html";
-//        }
-//        log.info(holiday);
-//        return "holiday.html";
-//    }
 }
